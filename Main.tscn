@@ -50,8 +50,22 @@ stream = ExtResource( 10 )
 [node name="PowerupTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Cactus" parent="." instance=ExtResource( 11 )]
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Cactus" parent="Obstacles" instance=ExtResource( 11 )]
 position = Vector2( 165.575, 148.145 )
+
+[node name="Cactus2" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 474.82, 399.103 )
+
+[node name="Cactus3" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 865.019, 496.248 )
+
+[node name="Cactus4" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 133.193, 494.629 )
+
+[node name="Cactus5" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 685.301, 159.479 )
 [connection signal="hurt" from="Player" to="." method="_on_Player_hurt"]
 [connection signal="pickup" from="Player" to="." method="_on_Player_pickup"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
