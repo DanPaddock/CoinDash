@@ -14,7 +14,6 @@ func _ready():
 	screensize = get_viewport().get_visible_rect().size
 	$Player.screensize = screensize
 	$Player.hide()
-	new_game()
 
 func new_game():
 	playing = true
@@ -25,6 +24,8 @@ func new_game():
 	$Player.show()
 	$GameTimer.start()
 	spawn_coins()
+	$HUD.update_score(score)
+	$HUD.update_timer(time_left)
 
 func _process(delta):
 	if playing and $CoinContainer.get_child_count() == 0:
@@ -38,3 +39,24 @@ func spawn_coins():
 		$CoinContainer.add_child(c)
 		c.screensize = screensize
 		c.position = Vector2(rand_range(0, screensize.x), rand_range(0, screensize.y))
+
+func _on_GameTimer_timeout():
+	time_left -= 1
+	$HUD.update_timer(time_left)
+	if time_left <= 0:
+		game_over()
+
+func _on_Player_pickup():
+	score += 1
+	$HUD.update_score(score)
+
+func _on_Player_hurt():
+	game_over()
+
+func game_over():
+	playing = false
+	$GameTimer.stop()
+	for coin in $CoinContainer.get_children():
+		coin.queue_free()
+	$HUD.show_game_over()
+	$Player.die()

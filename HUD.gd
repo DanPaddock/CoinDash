@@ -19,4 +19,11 @@ func _on_MessageTimer_timeout():
 func _on_StartButton_pressed():
 	$StartButton.hide()
 	$MessageLabel.hide()
-	$emit_signal("start_game")
+	emit_signal("start_game")
+
+func show_game_over():
+	show_message("Game Over")
+	yield($MessageTimer, "timeout")
+	$StartButton.show()
+	$MessageLabel.text = "Coin Dash!"
+	$MessageLabel.show()
