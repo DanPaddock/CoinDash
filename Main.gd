@@ -33,6 +33,8 @@ func _process(delta):
 		level += 1
 		time_left += 5
 		spawn_coins()
+		$PowerupTimer.wait_time = rand_range(5, 10)
+		$PowerupTimer.start()
 
 func spawn_coins():
 	for i in range(4 + level):
@@ -48,10 +50,16 @@ func _on_GameTimer_timeout():
 	if time_left <= 0:
 		game_over()
 
-func _on_Player_pickup():
-	score += 1
-	$HUD.update_score(score)
-	$CoinSound.play()
+func _on_Player_pickup(type):
+	match type:
+		"coin":
+			score += 1
+			$HUD.update_score(score)
+			$CoinSound.play()
+		"powerup":
+			time_left += 5
+			$PowerupSound.play()
+			$HUD.update_timer(time_left)
 
 func _on_Player_hurt():
 	game_over()
