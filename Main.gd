@@ -1,6 +1,7 @@
 extends Node
 
 export (PackedScene) var Coin
+export (PackedScene) var Powerup
 export (int) var playtime
 
 var level
@@ -63,3 +64,9 @@ func game_over():
 		coin.queue_free()
 	$HUD.show_game_over()
 	$Player.die()
+
+func _on_PowerupTimer_timeout():
+	var p = Powerup.instance()
+	add_child(p)
+	p.screensize = screensize
+	p.position = Vector2(rand_range(0, screensize.x), rand_range(0, screensize.y))

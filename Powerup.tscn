@@ -39,4 +39,11 @@ frames = SubResource( 1 )
 shape = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+[connection signal="area_entered" from="." to="." method="_on_Powerup_area_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
