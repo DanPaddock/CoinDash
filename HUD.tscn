@@ -48,7 +48,7 @@ text = "0"
 align = 2
 valign = 1
 
-[node name="Timer" type="Timer" parent="MarginContainer/TimeLabel"]
+[node name="MessageTimer" type="Timer" parent="MarginContainer/TimeLabel"]
 wait_time = 2.0
 one_shot = true
 

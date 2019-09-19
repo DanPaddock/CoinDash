@@ -3,8 +3,8 @@ extends Area2D
 var screensize
 
 func _ready():
-	$Timer.wait_time = rand_range(3, 8)
-	$Timer.start()
+	$Lifetime.wait_time = rand_range(3, 8)
+	$Lifetime.start()
 	$Tween.interpolate_property($AnimatedSprite, 'scale', $AnimatedSprite.scale,
 								$AnimatedSprite.scale * 3, 0.3, Tween.TRANS_QUAD,
 								Tween.EASE_IN_OUT)

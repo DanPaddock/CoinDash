@@ -11,7 +11,7 @@ func update_timer(value):
 func show_message(text):
 	$MessageLabel.text = text
 	$MessageLabel.show()
-	$MessageTimer.start()
+	$MarginContainer/TimeLabel/MessageTimer.start()
 
 func _on_MessageTimer_timeout():
 	$MessageLabel.hide()
@@ -23,7 +23,7 @@ func _on_StartButton_pressed():
 
 func show_game_over():
 	show_message("Game Over")
-	yield($MessageTimer, "timeout")
+	yield($MarginContainer/TimeLabel/MessageTimer, "timeout")
 	$StartButton.show()
 	$MessageLabel.text = "Coin Dash!"
 	$MessageLabel.show()
